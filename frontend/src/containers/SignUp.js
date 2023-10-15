@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import { setAlert } from '../actions/alert';
 
 
 
-const SignUp = ({ setAlert, signup, isAthenticated }) => {
+const SignUp = ({ setAlert, signup, isAuthenticated }) => {
  
   const [formData, setFormData ] = useState({
       name: '',
@@ -28,12 +28,12 @@ const SignUp = ({ setAlert, signup, isAthenticated }) => {
         setAlert('Passwords do not match', 'error');
     else
         signup({name, email, password, password2});
-
+       
+  
   };
 
-  if(isAthenticated)
-      return <Redirect to='/' />
-
+  if (isAuthenticated)
+  return <Navigate to='/' />;
 
   return (
     <div className='auth'>
@@ -107,11 +107,11 @@ const SignUp = ({ setAlert, signup, isAthenticated }) => {
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,
-  isAthenticated:PropTypes.bool
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAthenticated: state.auth.isAthenticated
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 

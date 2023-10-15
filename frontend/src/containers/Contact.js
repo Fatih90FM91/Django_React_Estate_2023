@@ -6,6 +6,8 @@ import { setAlert } from '../actions/alert';
 import  * as Loader  from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
+import {Link} from 'react-router-dom';
+
 const Contact = ({setAlert}) => {
 
     useEffect(() => {
@@ -114,6 +116,8 @@ return(
                 }
             </form>
 
+            
+          
   </div>
 
 );

@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const ListingDetail = (props) => {
     const [listing, setListing] = useState({});
     const [realtor, setRealtor] = useState({});
     const [price, setPrice] = useState(0);
 
+    let  {id}  = useParams();
+
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
 
     useEffect(() => {
-        const slug = props.match.params.id;
+        
+        const slug = id ;
+        console.log(slug);
 
         const config = {
             headers: {
@@ -29,7 +35,7 @@ const ListingDetail = (props) => {
         .catch(err => {
 
         });
-    }, [props.match.params.id]);
+    }, []);
 
     useEffect(() => {
         const id = listing.realtor;
@@ -335,4 +341,17 @@ const ListingDetail = (props) => {
     );
 };
 
-export default ListingDetail;
+
+// ListingDetail.propTypes = {
+//     setListings: PropTypes.func.isRequired,
+//     setRealtor: PropTypes.func.isRequired,
+//     // setPrice: PropTypes.number.isRequired,
+//     slug: PropTypes.string.isRequired,
+// };
+
+const mapStateToProps = state => ({
+    id: state.id
+});
+
+
+export default connect(mapStateToProps)(ListingDetail);

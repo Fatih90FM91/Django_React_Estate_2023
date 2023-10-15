@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-_qv)r@@hma&-&kximc_%oefz*mr*vx2t97(0osdkoqlo-orzz3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://backend-realestate-2023-5caa7ebcd402.herokuapp.com/']
 
 
 # Application definition
@@ -88,10 +89,11 @@ WSGI_APPLICATION = 'realest_estate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'realest_estate',
-        'USER': 'postgres',
-        'PASSWORD': '19900203',
-        'HOST': 'localhost'
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_qY7XdkhlTAK4gufDMGg',
+        'PORT': '20976',
+        'HOST': 'pg-460d71d-amazing-projects.aivencloud.com'
     }
 }
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -160,6 +162,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_ROOT = os.path.join(BASE_DIR ,'static/images')
 
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR , 'static')
+
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/images/'
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR , 'static')]
+
+
+
+# MEDIA_ROOT = os.path.join(BASE_DIR ,'static/images')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.IsAuthenticated'
@@ -182,5 +201,7 @@ AUTH_USER_MODEL = 'accounts.UserAccount'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
 
 

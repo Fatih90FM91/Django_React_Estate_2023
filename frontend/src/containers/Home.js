@@ -41,6 +41,7 @@ const Home = () => {
                     name='description'
                     content='Realest Estate Home Page'
                 />
+               
             </Helmet>
             <section className='home__form'>
                 <ListingForm setListings={setListings} />
@@ -65,6 +66,8 @@ const Home = () => {
                     }
                 </div>
             </section>
+            
+            
         </main>
     );
 };
